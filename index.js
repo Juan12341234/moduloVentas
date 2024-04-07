@@ -5,7 +5,7 @@ const app = express();
 const Ventas = [
     {
         id: 1,
-        agendamiento: 'Consulta general',
+        agendamiento: 2,
         diagnostico: 'Resfriado común',
         fecha: '2024-04-05',
         hora: '10:00',
@@ -14,7 +14,7 @@ const Ventas = [
     },
     {
         id: 2,
-        agendamiento: 'Control pediátrico',
+        agendamiento: 1,
         diagnostico: 'Estado de salud óptimo',
         fecha: '2024-04-10',
         hora: '15:30',
@@ -23,7 +23,7 @@ const Ventas = [
     },
     {
         id: 3,
-        agendamiento: 'Cirugía menor',
+        agendamiento: 3,
         diagnostico: 'Extracción de uña encarnada',
         fecha: '2024-04-15',
         hora: '08:00',
