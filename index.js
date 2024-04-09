@@ -6,11 +6,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const Ventas = require('./Model/ventasModel');
-const User = require('./Model/userModel');
-
-app.use("/login", function (req, res) {
-    return res.json(User);
-});
 
 app.use("/ventas/:id", function (req, res) {
     const {id} = req.params;
@@ -28,5 +23,5 @@ app.use("/ventas", function (req, res) {
 });
 
 app.listen(process.env.PORT ?? 8000, function () {
-    console.log("Conectado");
+    console.log("Conectado al servidor");
 });
