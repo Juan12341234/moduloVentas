@@ -1,31 +1,36 @@
-const Ventas = [
-    {
-        id: 1,
-        agendamiento: 2,
-        diagnostico: 'Resfriado común',
-        fecha: '2024-04-05',
-        hora: '10:00',
-        precio: 50,
-        metodoPago: 'Tarjeta de crédito'
+const mongoose = require('mongoose');
+
+const ventasShema = mongoose.Schema({
+    id : {
+        type : Number,
+        required : true, 
     },
-    {
-        id: 2,
-        agendamiento: 1,
-        diagnostico: 'Estado de salud óptimo',
-        fecha: '2024-04-10',
-        hora: '15:30',
-        precio: 80,
-        metodoPago: 'Efectivo'
+    agendamiento : {
+        type : Number,
+        required : true,
     },
-    {
-        id: 3,
-        agendamiento: 3,
-        diagnostico: 'Extracción de uña encarnada',
-        fecha: '2024-04-15',
-        hora: '08:00',
-        precio: 120,
-        metodoPago: 'Transferencia bancaria'
+    diagnostico : {
+        type : String,
+        require : true,
     },
-];
+    fecha : {
+        type : String,
+        require : true, 
+    },
+    hora : {
+        type : String,
+        require : true,
+    },
+    precio : {
+        type : Number,
+        require : true,
+    },
+    metodoPago : {
+        type : String,
+        require : true,
+    }, 
+});
+
+const Ventas = mongoose.model('Ventas', ventasShema);
 
 module.exports = Ventas;

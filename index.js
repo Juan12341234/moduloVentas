@@ -1,27 +1,34 @@
-const express = require("express");
-
+const express = require('express');
 const app = express();
 
+// Obtener la variable de entorno
+const dotenv = require('dotenv');
+dotenv.config({path: './config.env'});
+
+// Conexion a la base de datos
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DBConnection)
+.then(() => {
+    console.log('Conexión exitosa');
+})
+.catch(err => console.error(`Error de conexión: ${err}`));
+
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-const Ventas = require('./Model/ventasModel');
+// Rutas requeridas
+const ventasRoutes = require('./Routes/ventasRoutes');
 
-app.use("/ventas/:id", function (req, res) {
-    const {id} = req.params;
-    const venta = Ventas.find(function(venta){
-        return venta.id == id;
-    })
-    if(!venta){
-        return res.status(400).json({mensaje: "Error: Venta no existe"});
-    }
-    return res.json(venta);
+// Rutas usuadas
+app.use(ventasRoutes);
+
+app.use('/', (req, res) => {
+    res.send("Bienvenido a la api de ventas Amor&Glamour");
 });
 
-app.use("/ventas", function (req, res) {
-    return res.json(Ventas);
-});
+// Puerto Utilizado
+const port = process.env.PORT || 3000;
 
-app.listen(process.env.PORT ?? 8000, function () {
-    console.log("Conectado al servidor");
+app.listen(port, () => {
+    console.log(`Conectado al puerto ${port}`);
 });
